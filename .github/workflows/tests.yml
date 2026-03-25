@@ -1,1 +1,19 @@
+name: Running Tests
 
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Step 1: checkout
+      - name: Install Python  # Step 2: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies # Step 3: Install pytest, pytest-cov, flake8
+        run: pip install pytest pytest-cov flake8
+      - name: run pytest # Step 4: Run pytest
+        run: pytest --cov=. --cov-fail-under=85
+      - name: run flake8 # Step 5: Run flake8
+        run: flake8 .
