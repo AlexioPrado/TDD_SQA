@@ -1,5 +1,5 @@
-import pytest
-from health import *
+from health import take_damage, heal, is_alive
+
 
 # ---- take_damage ----
 def test_take_damage_reduces_health(player):
@@ -22,8 +22,8 @@ def test_heal_dead_player(dead_player):
 # ---- is_alive ----
 def test_is_alive_returns_true_when_healthy(player):
     take_damage(player, 30)
-    assert is_alive(player) == True
+    assert is_alive(player) is True
 
 
 def test_is_alive_returns_false_when_not_healthy(dead_player):
-    assert is_alive(dead_player) == False
+    assert is_alive(dead_player) is False
